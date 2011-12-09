@@ -8,16 +8,28 @@
 	<h1>This is a header</h1>
 	<p>This is a paragraph</p>
 	<p id="green">This is a another paragraph, lets change the color to green!</p>
+	<div id="ajax">This can be updated via ajax</div>
 </div>
 <script src="js/N1.core.js"></script>
 <script src="js/N1.dom.js"></script>
+<script src="js/N1.ajax.js"></script>
 <script type="text/javascript">
-	if(N1 && N1.setCSS){
-		N1.setCSS("#green",{
-			color:"green"
-		});
-		
-	}
+if(N1 && N1.setCSS){
+	N1.setCSS("#green",{
+		color:"green"
+	});
+}
+if(N1 && N1.ajax){
+	N1.ajax.post("ajax.php",
+	{
+		arg1: "test",
+		arg2: "bleh",
+		arg3: true
+	},
+	function(data){
+		N1.setHtml("#ajax", data);
+	});
+}
 </script>
 </body>
 </html>

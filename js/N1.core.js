@@ -30,6 +30,10 @@
 		},
 		noConflict: function(name){
 			global.N1 = _N1;
+		},
+		changeNamespace: function(name){
+			global[name] = N1;
+			global.N1 = null;
 		}
 	}
 	if(N1 in global){
