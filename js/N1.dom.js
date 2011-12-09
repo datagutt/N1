@@ -1,12 +1,14 @@
-if(N1 && N1.isHostMethod && N1.isHostMethod(N1, 'extend')){
-	N1.extend({
-		getElement: function(selector){
-			var $el;
+(function(N1,global, undefined){
+	"use strict";
+	if(N1 && N1.isHostMethod && N1.isHostMethod(N1, 'extend')){
+		N1.extend({
+			getElement: function(selector){
+				var $el;
 				if(this.isHostMethod(document, 'querySelectorAll')){
 					$el = document.querySelectorAll(selector);
 				}else if(this.isHostMethod(document, 'getElementsById')){
 					/* ugly hack */
-					if(selector.search("#")==0){
+					if(selector.search("#")===0){
 						selector = selector.slice(1);
 					}
 					$el = document.getElementsById(selector);
@@ -61,4 +63,5 @@ if(N1 && N1.isHostMethod && N1.isHostMethod(N1, 'extend')){
 				return $el;
 			}
 		});
-}
+	}
+})(window.N1, window, undefined);
