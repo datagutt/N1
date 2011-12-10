@@ -13,9 +13,9 @@
 			},
 			XHR: function(){
 				var obj;
-				if(global.XMLHttpRequest){
+				if(N1.isHostMethod(global, 'XMLHttpRequest')){
 					obj = new XMLHttpRequest();
-				}else if(global.ActiveXObject){
+				}else if(N1.isHostMethod(global, 'ActiveXObject')){
 					try{
 						obj = new global.ActiveXObject("Msxml2.XMLHTTP");
 					}catch(error1){
