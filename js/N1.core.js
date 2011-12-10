@@ -18,7 +18,7 @@
 				object = this;
 			}
 			for (var i in prop) {
-				if(prop.hasOwnProperty(i)){
+				if(N1.isHostMethod(prop,'hasOwnProperty') && prop.hasOwnProperty(i)){
 					object[i] = prop[i];
 				}
 			}
