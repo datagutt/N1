@@ -27,7 +27,7 @@
 		forEach: function(element, callback){
 			for(var i in element){
 				if(element.hasOwnProperty(i)){
-					callback(i,element[i]);
+					callback(i, element[i]);
 				}
 			}
 			return element;
