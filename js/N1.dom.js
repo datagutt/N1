@@ -89,6 +89,12 @@
 				}
 				return $el;
 			},
+			setOpacity: function(selector, level){
+				N1.setStyle(selector, 'opacity', level);
+				N1.setStyle(selector, '-moz-opacity', level);
+				N1.setStyle(selector, '-khtml-opacity', level);
+				N1.setStyle(selector, 'filter', 'alpha(opacity=' + (level * 100) + ');');
+			},
 			setStyle: function(selector, attr, value){
 				var $el = N1.getElement(selector);
 				if($el && $el.style){

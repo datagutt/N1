@@ -10,18 +10,21 @@
 	<p id="green">This is a another paragraph, lets change the color to green!</p>
 	<div id="ajax">This can be updated via ajax</div>
 	<div class="test"><p>This div has a class</p></div>
-	<div class="test"><p>This div also has a class</p></div>
+	<button id="btn1">Fadein</button>
+	<button id="btn2">Fadeout</button>
+	<div class="effect" style="opacity:0;"><p>This div is for testing effects</p></div>
 </div>
 <script src="js/N1.core.js"></script>
 <script src="js/N1.dom.js"></script>
+<script src="js/N1.effects.js"></script>
 <script src="js/N1.ajax.js"></script>
 <script type="text/javascript">
-if(N1 && N1.setStyles){
+if(N1 && N1.isHostMethod(N1, 'setStyles')){
 	N1.setStyles("#green",{
 		color:"green"
 	});
 }
-if(N1 && N1.ajax){
+if(N1 && N1.isHostMethod(N1, 'ajax')){
 	N1.ajax.post("ajax.php",
 	{
 		arg1: "test",
@@ -31,6 +34,16 @@ if(N1 && N1.ajax){
 	function(data){
 		N1.setHtml("#ajax", data);
 	});
+}
+if(N1 && N1.isHostMethod(N1,'effects')){
+	var btn1 = N1.getElement("#btn1");
+	var btn2 = N1.getElement("#btn2");
+	btn1.onclick=function(){
+		N1.effects.fadeIn(".effect");
+	};
+	btn2.onclick=function(){
+		N1.effects.fadeOut(".effect");
+	};
 }
 </script>
 </body>
