@@ -3,37 +3,47 @@
 	if(N1 && N1.isHostMethod && N1.isHostMethod(N1, 'extend') && N1.isHostMethod(N1, 'setOpacity')){
 		N1.extend({effects:{
 			fadeIn: function(selector, duration){
-				var $el = N1.getElement(selector), $value;
+				var $el = N1.getElement(selector), timer, i = 0;
 				if(!duration){
 					var duration = 1000;
 				}
 				/* 
-					Dont fade in if its fading out
-					I should also find out why it doesnt fade out fully
+					TODO: Find out how handle duration
 				*/
-				if($el.style.opacity > 0.01){
+				if($el.style.opacity > 0 && $el.style.opacity !== 1){
 					return;
 				}
-				for (var i = 0; i <= 1; i += 0.01) {
-					setTimeout("N1.setOpacity('" + selector + "'," + i + ")", i * duration);
-				}
+				clearInterval(timer);
+				timer = setInterval(function() {
+					if(i >= 100){
+						clearInterval(timer);
+						return;
+					}
+					N1.setOpacity(selector, (i / 10));
+					i++;
+				});
 				return $el;
 			},
 			fadeOut: function(selector, duration){
-				var $el = N1.getElement(selector), $value;
+				var $el = N1.getElement(selector), timer, i = 0;
 				if(!duration){
 					var duration = 1000;
 				}
 				/* 
-					Dont fade out if its fading in 
-					I should also find out why it doesnt fade in fully
+					TODO: Find out how handle duration
 				*/
-				if($el.style.opacity < 0.9){
+				if($el.style.opacity < 1 && $el.style.opacity !== 0){
 					return;
 				}
-				for (var i = 0; i <= 1; i += 0.01) {
-					setTimeout("N1.setOpacity('" + selector + "'," + (1 - i) + ")", i * duration);
-				}
+				clearInterval(timer);
+				timer = setInterval(function() {
+					if(i >= 100){
+						clearInterval(timer);
+						return;
+					}
+					N1.setOpacity(selector, 1 - (i / 10));
+					i++;
+				});
 				return $el;
 			}
 		}});
