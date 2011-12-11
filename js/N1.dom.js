@@ -81,6 +81,21 @@
 				$value = $el && $el.style[attr] ? $el.style[attr] : "";
 				return $value;
 			},
+			getOpacity: function(selector){
+				var $el = N1.getElement(selector), $filter;
+				if($el.style.opacity){
+					$filter = $el.style.opacity;
+				}else if($el.style.MozOpacity){
+					$filter = $el.style.MozOpacity;
+				}else if($el.style.KhtmlOpacity){
+					$filter = $el.style.Khtmlopacity;
+				}else if($el.style.filter){
+					$filter = $el.style.filter
+						.replace(')','')
+						.replace('alpha(opacity=','');
+				}
+				return parseFloat($filter);
+			},
 			setAttribute: function(selector, attr, value){
 				var $el = N1.getElement(selector);
 				$el[attr] = value;

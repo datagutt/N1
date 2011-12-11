@@ -3,24 +3,24 @@
 	if(N1 && N1.isHostMethod && N1.isHostMethod(N1, 'extend') && N1.isHostMethod(N1, 'setOpacity')){
 		N1.extend({effects:{
 			fadeIn: function(selector, duration){
-				var $el = N1.getElement(selector), timer, i = 0;
+				var $el = N1.getElement(selector), timer, i = N1.getOpacity(selector);
 				if(!duration){
 					duration = 1000;
 				}
 				/* 
 					TODO: Find out how handle duration
 				*/
-				if($el.style.opacity > 0 && $el.style.opacity !== 1){
+				if($el.style.opacity > 0.01){
 					return;
 				}
 				clearInterval(timer);
 				timer = setInterval(function() {
-					if(i >= 100){
+					if(i >= 1){
 						clearInterval(timer);
 						return;
 					}
-					N1.setOpacity(selector, (i / 10));
-					i++;
+					N1.setOpacity(selector, i);
+					i += 0.01;
 				});
 				return $el;
 			},
@@ -32,17 +32,17 @@
 				/* 
 					TODO: Find out how handle duration
 				*/
-				if($el.style.opacity < 1 && $el.style.opacity !== 0){
+				if($el.style.opacity < 0.9){
 					return;
 				}
 				clearInterval(timer);
 				timer = setInterval(function() {
-					if(i >= 100){
+					if(i >= 1){
 						clearInterval(timer);
 						return;
 					}
-					N1.setOpacity(selector, 1 - (i / 10));
-					i++;
+					N1.setOpacity(selector, 1 - i);
+					i += 0.01;
 				});
 				return $el;
 			}
