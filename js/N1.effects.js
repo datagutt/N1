@@ -5,7 +5,7 @@
 			fadeIn: function(selector, duration){
 				var $el = N1.getElement(selector), timer, i = 0;
 				if(!duration){
-					var duration = 1000;
+					duration = 1000;
 				}
 				/* 
 					TODO: Find out how handle duration
@@ -27,7 +27,7 @@
 			fadeOut: function(selector, duration){
 				var $el = N1.getElement(selector), timer, i = 0;
 				if(!duration){
-					var duration = 1000;
+					duration = 1000;
 				}
 				/* 
 					TODO: Find out how handle duration
