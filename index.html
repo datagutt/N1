@@ -19,12 +19,12 @@
 <script src="js/N1.effects.js"></script>
 <script src="js/N1.ajax.js"></script>
 <script type="text/javascript">
-if(N1 && N1.isHostMethod(N1, 'setStyles')){
+if(N1 && N1.isFeature("setStyles")){
 	N1.setStyles("#green",{
 		color:"green"
 	});
 }
-if(N1 && N1.isHostMethod(N1, 'ajax')){
+if(N1 && N1.isFeature("ajax")){
 	N1.ajax.post("ajax.php",
 	{
 		arg1: "test",
@@ -35,15 +35,15 @@ if(N1 && N1.isHostMethod(N1, 'ajax')){
 		N1.setHtml("#ajax", data);
 	});
 }
-if(N1 && N1.isHostMethod(N1,'effects')){
+if(N1 && N1.isFeature("ajax")){
 	var btn1 = N1.getElement("#btn1");
 	var btn2 = N1.getElement("#btn2");
-	btn1.onclick=function(){
+	N1.addEvent("#btn1","click",function(){
 		N1.effects.fadeIn(".effect");
-	};
-	btn2.onclick=function(){
+	});
+	N1.addEvent("#btn2","click",function(){
 		N1.effects.fadeOut(".effect");
-	};
+	});
 }
 </script>
 </body>

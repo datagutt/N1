@@ -32,6 +32,15 @@
 			}
 			return element;
 		},
+		isFeature: function(){
+			var a = arguments.length;
+			while(a--){
+				if(N1[arguments[a]]){
+					return true;
+				}
+			}
+			return false;
+		},
 		noConflict: function(name){
 			global.N1 = _N1;
 		},

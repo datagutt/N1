@@ -51,6 +51,16 @@
 				}
 				return els;
 			},
+			addEvent: function(selector, type, handler){
+				var $el = N1.getElement(selector);
+				if(N1.isHostMethod($el, 'addEventListener')){
+					$el.addEventListener(type, handler, false);
+				}else if(N1.isHostMethod($el, 'attachEvent')){
+					$el.attachEvent("on"+type, handler);  
+				}else if($el["on"+type]){
+					$el["on"+type] = handler;
+				}
+			},
 			getAttribute: function(selector, attr){
 				var $el = N1.getElement(selector);
 				return $el && $el[attr] ? $el[attr] : "";
