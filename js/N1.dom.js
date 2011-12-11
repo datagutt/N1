@@ -107,6 +107,14 @@
 					N1.setStyle(selector, attr, value);
 				});
 				return true;
+			},
+			removeAttribute: function(selector, attr){
+				var $el = N1.getElement(selector); 
+				if(N1.isHostMethod($el, 'removeAttribute')){
+					$el.removeAttribute(attr);
+				}else{
+					$el[attr] = false;
+				}
 			}
 		});
 	}
