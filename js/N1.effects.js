@@ -19,9 +19,6 @@
 						N1.setOpacity(selector, i + 0.01);
 					}, step);
 				}catch(e){
-					N1.setStyle(selector, {
-						display: "none"
-					})
 					N1.removeStyle(selector, "display");
 				}
 				return $el;
@@ -44,10 +41,7 @@
 						N1.setOpacity(selector, i - 0.01);
 					}, step);
 				}catch(e){
-					N1.setStyle(selector, {
-						display: "none"
-					})
-					N1.removeStyle(selector, "display");
+					N1.setStyle(selector, { display: "none" });
 				}
 				return $el;
 			}
