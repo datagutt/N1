@@ -4,46 +4,41 @@
 		N1.extend({effects:{
 			fadeIn: function(selector, duration){
 				var $el = N1.getElement(selector), timer, i = N1.getOpacity(selector);
-				if(!duration){
+				
+				if(isNaN(duration)){
 					duration = 1000;
-				}
-				/* 
-					TODO: Find out how handle duration
-				*/
-				if($el.style.opacity > 0.01){
-					return;
-				}
-				clearInterval(timer);
-				timer = setInterval(function() {
-					if(i >= 1){
-						clearInterval(timer);
-						return;
-					}
-					N1.setOpacity(selector, i);
-					i += 0.01;
-				});
+				} 
+				try{
+					clearInterval($el._time);	//If some animation is set, clear it
+					var step = ( duration / ( ( 1 - i ) * 100 ) );	//Calculate time of step
+					$el._timer = setInterval(function(){
+						i = N1.getOpacity(selector);
+						if(i >= 1){
+							return clearInterval($el._timer)
+						}
+						N1.setOpacity(selector, i + 0.01);
+					}, step);
+				}catch(e){}
 				return $el;
 			},
 			fadeOut: function(selector, duration){
-				var $el = N1.getElement(selector), timer, i = 0;
-				if(!duration){
+				var $el = N1.getElement(selector), timer, i = N1.getOpacity(selector);
+				
+				if(isNaN(duration)){
 					duration = 1000;
 				}
-				/* 
-					TODO: Find out how handle duration
-				*/
-				if($el.style.opacity < 0.9){
-					return;
-				}
-				clearInterval(timer);
-				timer = setInterval(function() {
-					if(i >= 1){
-						clearInterval(timer);
-						return;
-					}
-					N1.setOpacity(selector, 1 - i);
-					i += 0.01;
-				});
+				try{
+					clearInterval($el._time);	//If some animation is set, clear it
+					var step = ( duration / ( i * 100 ) );	//Calculate time of step
+					
+					$el._timer = setInterval(function(){
+						i = N1.getOpacity(selector);
+						if(i <= 0){
+							return clearInterval($el._timer);
+						} 
+						N1.setOpacity(selector, i - 0.01);
+					}, step);
+				}catch(e){}
 				return $el;
 			}
 		}});

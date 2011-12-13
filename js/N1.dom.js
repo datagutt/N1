@@ -92,7 +92,7 @@
 				}else if($el.style.filter){
 					$filter = $el.style.filter
 						.replace(')','')
-						.replace('alpha(opacity=','');
+						.replace('alpha(opacity=','') * 10;
 				}
 				return parseFloat($filter);
 			},
@@ -115,6 +115,9 @@
 				return $el;
 			},
 			setOpacity: function(selector, level){
+				if(level > 1){
+					level = 1;
+				}
 				N1.setStyle(selector, 'opacity', level);
 				N1.setStyle(selector, '-moz-opacity', level);
 				N1.setStyle(selector, '-khtml-opacity', level);
