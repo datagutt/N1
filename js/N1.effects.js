@@ -9,7 +9,7 @@
 					duration = 1000;
 				} 
 				try{
-					clearInterval($el._time);	//If some animation is set, clear it
+					clearInterval($el._timer);	//If some animation is set, clear it
 					var step = ( duration / ( ( 1 - i ) * 100 ) );	//Calculate time of step
 					$el._timer = setInterval(function(){
 						i = N1.getOpacity(selector);
@@ -18,7 +18,12 @@
 						}
 						N1.setOpacity(selector, i + 0.01);
 					}, step);
-				}catch(e){}
+				}catch(e){
+					N1.setStyle(selector, {
+						display: "none"
+					})
+					N1.removeStyle(selector, "display");
+				}
 				return $el;
 			},
 			fadeOut: function(selector, duration){
@@ -28,7 +33,7 @@
 					duration = 1000;
 				}
 				try{
-					clearInterval($el._time);	//If some animation is set, clear it
+					clearInterval($el._timer);	//If some animation is set, clear it
 					var step = ( duration / ( i * 100 ) );	//Calculate time of step
 					
 					$el._timer = setInterval(function(){
@@ -38,7 +43,12 @@
 						} 
 						N1.setOpacity(selector, i - 0.01);
 					}, step);
-				}catch(e){}
+				}catch(e){
+					N1.setStyle(selector, {
+						display: "none"
+					})
+					N1.removeStyle(selector, "display");
+				}
 				return $el;
 			}
 		}});

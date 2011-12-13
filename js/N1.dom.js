@@ -33,7 +33,7 @@
 				return $els;
 			},
 			getByClass: function(el){
-				var els = [], allElements = [], match;
+				var els = [], allElements = [], match = false;
 				if(N1.isHostMethod(doc, 'getElementsByClassName')){
 					els = doc.getElementsByClassName(el);
 				}else if(N1.isHostMethod(doc, 'getElementsByTagName')){
@@ -43,7 +43,11 @@
 				}
 				if(allElements.length){
 					N1.forEach(allElements, function(i, current){
-						match = (current.className == el);
+						if(N1.isHostMethod(current, 'getAttribute')){
+							match = (current.getAttribute("className") == el);
+						}else if(current && current.className && current.className != ""){
+							match = (current.className == el);
+						}
 						if(match){
 							els.push(current);
 						}
@@ -78,19 +82,22 @@
 				if(!attr){
 					return;
 				}
-				$value = $el && $el.style[attr] ? $el.style[attr] : "";
+				$value = $el && $el.style && $el.style[attr] ? $el.style[attr] : "";
 				return $value;
 			},
 			getOpacity: function(selector){
 				var $el = N1.getElement(selector), $filter;
-				if($el.style.opacity){
-					$filter = $el.style.opacity;
-				}else if($el.style.MozOpacity){
-					$filter = $el.style.MozOpacity;
-				}else if($el.style.KhtmlOpacity){
-					$filter = $el.style.Khtmlopacity;
-				}else if($el.style.filter){
-					$filter = $el.style.filter
+				if(!($el && $el.style)){
+					return;
+				}
+				if($el.style["opacity"]){
+					$filter = $el.style["opacity"];
+				}else if($el.style["MozOpacity"]){
+					$filter = $el.style["MozOpacity"];
+				}else if($el.style["KhtmlOpacity"]){
+					$filter = $el.style["KhtmlOpacity"];
+				}else if($el.style["filter"]){
+					$filter = $el.style["filter"]
 						.replace(')','')
 						.replace('alpha(opacity=','') * 10;
 				}
@@ -135,6 +142,13 @@
 					N1.setStyle(selector, attr, value);
 				});
 				return true;
+			},
+			removeStyle: function(selector, attr){
+				var $el = N1.getElement(selector);
+				if($el && $el.style){
+					$el.style[attr] = false;
+				}
+				return $el;
 			},
 			removeEvent: function(selector, type, handler){
 				var $el = N1.getElement(selector);

@@ -26,7 +26,8 @@
 		},
 		forEach: function(element, callback){
 			for(var i in element){
-				if(element.hasOwnProperty(i)){
+				/* hasOwnProperty not available on dom objects in IE :O */
+				if(N1.isHostMethod(Object, 'hasOwnProperty') && Object.hasOwnProperty.call(element, i)){
 					callback(i, element[i]);
 				}
 			}
