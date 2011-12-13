@@ -9,8 +9,8 @@
 					duration = 1000;
 				} 
 				try{
-					clearInterval($el._timer);	//If some animation is set, clear it
-					var step = ( duration / ( ( 1 - i ) * 100 ) );	//Calculate time of step
+					clearInterval($el._timer);	/*If some animation is set, clear it*/
+					var step = ( duration / ( ( 1 - i ) * 100 ) );	/*Calculate time of step*/
 					$el._timer = setInterval(function(){
 						i = N1.getOpacity(selector);
 						if(i >= 1){
@@ -33,8 +33,8 @@
 					duration = 1000;
 				}
 				try{
-					clearInterval($el._timer);	//If some animation is set, clear it
-					var step = ( duration / ( i * 100 ) );	//Calculate time of step
+					clearInterval($el._timer);	/*If some animation is set, clear it*/
+					var step = ( duration / ( i * 100 ) );	/*Calculate time of step*/
 					
 					$el._timer = setInterval(function(){
 						i = N1.getOpacity(selector);
