@@ -133,6 +133,16 @@
 				});
 				return true;
 			},
+			removeEvent: function(selector, type, handler){
+				var $el = N1.getElement(selector);
+				if(N1.isHostMethod($el, 'removeEventListener')){
+					$el.removeEventListener(type, handler, false);
+				}else if(N1.isHostMethod($el, 'detachEvent')){
+					$el.detachEvent("on"+type, handler);  
+				}else if($el["on"+type]){
+					$el["on"+type] = false;
+				}
+			},
 			removeAttribute: function(selector, attr){
 				var $el = N1.getElement(selector); 
 				if(N1.isHostMethod($el, 'removeAttribute')){
