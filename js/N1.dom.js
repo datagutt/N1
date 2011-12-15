@@ -56,7 +56,7 @@
 				return els;
 			},
 			addEvent: function(selector, type, handler){
-				var $el = N1.getElement(selector);
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
 				if(N1.isHostMethod($el, 'addEventListener')){
 					$el.addEventListener(type, handler, false);
 				}else if(N1.isHostMethod($el, 'attachEvent')){
@@ -66,11 +66,11 @@
 				}
 			},
 			getAttribute: function(selector, attr){
-				var $el = N1.getElement(selector);
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
 				return $el && $el[attr] ? $el[attr] : "";
 			},
 			getHtml: function(selector, html){
-				var $el = N1.getElement(selector);
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
 				if($el && $el.innerHTML){
 					return $el.innerHTML;
 				}
@@ -78,7 +78,7 @@
 			},
 			getStyle: function(selector, attr){
 				var $el, $value;
-				$el = N1.getElement(selector);
+				$el = N1.isObject(selector) ? selector : N1.getElement(selector);
 				if(!attr){
 					return;
 				}
@@ -86,7 +86,8 @@
 				return $value;
 			},
 			getOpacity: function(selector){
-				var $el = N1.getElement(selector), $filter;
+				var $el, $filter;
+				$el = N1.isObject(selector) ? selector : N1.getElement(selector);
 				if(!($el && $el.style)){
 					return;
 				}
@@ -104,7 +105,7 @@
 				return parseFloat($filter);
 			},
 			setAttribute: function(selector, attr, value){
-				var $el = N1.getElement(selector);
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
 				$el[attr] = value;
 				return $el;
 			},
@@ -115,23 +116,24 @@
 				return true;
 			},
 			setHtml: function(selector, html){
-				var $el = N1.getElement(selector);
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
 				if($el && $el.innerHTML){
 					$el.innerHTML = html;
 				}
 				return $el;
 			},
 			setOpacity: function(selector, level){
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
 				if(level > 1){
 					level = 1;
 				}
-				N1.setStyle(selector, 'opacity', level);
-				N1.setStyle(selector, '-moz-opacity', level);
-				N1.setStyle(selector, '-khtml-opacity', level);
-				N1.setStyle(selector, 'filter', 'alpha(opacity=' + (level * 100) + ');');
+				N1.setStyle($el, 'opacity', level);
+				N1.setStyle($el, '-moz-opacity', level);
+				N1.setStyle($el, '-khtml-opacity', level);
+				N1.setStyle($el, 'filter', 'alpha(opacity=' + (level * 100) + ');');
 			},
 			setStyle: function(selector, attr, value){
-				var $el = N1.getElement(selector);
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
 				if($el && $el.style){
 					$el.style[attr] = value;
 				}
@@ -144,14 +146,14 @@
 				return true;
 			},
 			removeStyle: function(selector, attr){
-				var $el = N1.getElement(selector);
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
 				if($el && $el.style){
 					$el.style[attr] = false;
 				}
 				return $el;
 			},
 			removeEvent: function(selector, type, handler){
-				var $el = N1.getElement(selector);
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
 				if(N1.isHostMethod($el, 'removeEventListener')){
 					$el.removeEventListener(type, handler, false);
 				}else if(N1.isHostMethod($el, 'detachEvent')){
@@ -161,7 +163,7 @@
 				}
 			},
 			removeAttribute: function(selector, attr){
-				var $el = N1.getElement(selector); 
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector); 
 				if(N1.isHostMethod($el, 'removeAttribute')){
 					$el.removeAttribute(attr);
 				}else{

@@ -12,6 +12,13 @@
 		isArray: function(obj){
 			return obj.constructor === Array && obj instanceof Array;
 		},
+		isObject: function(obj){
+			/* If its a HTML element, .constructor.constructor will return Object */
+			return (obj.constructor === Object || obj.constructor.constructor === Object) && obj instanceof Object;
+		},
+		isString: function(obj){
+			return obj.constructor === String;
+		},
 		extend: function(object, prop){
 			if(!prop){
 				prop = object;
