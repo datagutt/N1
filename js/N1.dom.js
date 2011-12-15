@@ -58,10 +58,9 @@
 			},
 			documentReady: function(func){
 				var currentFunc, init = function(){
-					N1.forEach(N1.readyArray, function(){
-						currentFunc = N1.readyArray.shift();
-						if(N1.isFunction(currentFunc)){
-							currentFunc();
+					N1.forEach(N1.readyArray, function(i, func){
+						if(N1.isFunction(func)){
+							func();
 						}
 					});
 				}

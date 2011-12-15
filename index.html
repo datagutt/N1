@@ -12,7 +12,7 @@
 	<div class="test"><p>This div has a class</p></div>
 	<button id="btn1">Fadein</button>
 	<button id="btn2">Fadeout</button>
-	<div class="effect"><p>This div is for testing effects</p></div>
+	<div class="effect" style="opacity:1;"><p>This div is for testing effects</p></div>
 </div>
 <script src="js/N1.core.js"></script>
 <script src="js/N1.dom.js"></script>
@@ -50,7 +50,6 @@ if(N1 && N1.isFeature("documentReady")){
 		N1.setHtml(".first","This is written after documentReady");
 	});
 	N1.documentReady(function(){
-	alert("blah");
 		if(N1 && N1.isFeature("effects")){
 			N1.effects.fadeOut(".effect");
 		}
