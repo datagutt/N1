@@ -2,6 +2,7 @@
 	"use strict";
 	if(N1 && N1.isHostMethod && N1.isHostMethod(N1, 'extend')){
 		N1.extend({
+			readyArray: [],
 			getElement: function(selector){
 				var $el;
 				if(N1.isHostMethod(doc, 'querySelector')){
@@ -55,6 +56,22 @@
 				}
 				return els;
 			},
+			documentReady: function(func){
+				var currentFunc, init = function(){
+					N1.forEach(N1.readyArray, function(){
+						currentFunc = N1.readyArray.shift();
+						if(N1.isFunction(currentFunc)){
+							currentFunc();
+						}
+					});
+				}
+				N1.readyArray.push(func);
+				if(N1.isFeature(document, 'addEventListener')){
+					N1.addEvent(document, 'DOMContentLoaded', init);
+				}else if(!N1.isHostMethod(window,'onload')){
+					window.onload = init;
+				}
+			},
 			addEvent: function(selector, type, handler){
 				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
 				if(N1.isHostMethod($el, 'addEventListener')){
@@ -86,7 +103,7 @@
 				return $value;
 			},
 			getOpacity: function(selector){
-				var $el, $filter;
+				var $el, $filter = 0;
 				$el = N1.isObject(selector) ? selector : N1.getElement(selector);
 				if(!($el && $el.style)){
 					return;

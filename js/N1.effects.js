@@ -3,7 +3,9 @@
 	if(N1 && N1.isHostMethod && N1.isHostMethod(N1, 'extend') && N1.isHostMethod(N1, 'setOpacity')){
 		N1.extend({effects:{
 			fadeIn: function(selector, duration){
-				var $el = N1.getElement(selector), timer, i = N1.getOpacity($el);
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector),
+					timer,
+					i = N1.getOpacity($el);
 				
 				if(isNaN(duration)){
 					duration = 1000;
@@ -24,7 +26,9 @@
 				return $el;
 			},
 			fadeOut: function(selector, duration){
-				var $el = N1.getElement(selector), timer, i = N1.getOpacity($el);
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector),
+					timer,
+					i = N1.getOpacity($el);
 				
 				if(isNaN(duration)){
 					duration = 1000;
