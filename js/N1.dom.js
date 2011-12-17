@@ -130,7 +130,12 @@
 			},
 			setAttribute: function(selector, attr, value){
 				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
-				$el[attr] = value;
+				if(N1.isHostMethod($el, 'setAttribute')){
+					$el.setAttribute(attr, value);
+				}else{
+					/* this will fail for alot of attributes (class etc) */
+					$el[attr] = value;
+				}
 				return $el;
 			},
 			setAttributes: function(selector, attrs){
