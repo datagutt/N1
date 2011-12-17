@@ -122,7 +122,7 @@
 			},
 			showElement: function(selector){
 				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
-				N1.removeStyle($el, "display");
+				N1.setStyle($el, "display", "block");
 			},
 			hideElement: function(selector){
 				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
