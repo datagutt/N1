@@ -21,7 +21,7 @@
 						N1.setOpacity($el, i + 0.01);
 					}, step);
 				}catch(e){
-					N1.removeStyle($el, "display");
+					N1.showElement($el);
 				}
 				return $el;
 			},
@@ -45,7 +45,7 @@
 						N1.setOpacity($el, i - 0.01);
 					}, step);
 				}catch(e){
-					N1.setStyle($el, { display: "none" });
+					N1.hideElement($el);
 				}
 				return $el;
 			}

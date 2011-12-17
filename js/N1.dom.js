@@ -120,6 +120,14 @@
 				}
 				return parseFloat($filter);
 			},
+			showElement: function(selector){
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
+				N1.removeStyle($el, "display");
+			},
+			hideElement: function(selector){
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
+				N1.setStyle($el, "display", "none");
+			},
 			setAttribute: function(selector, attr, value){
 				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
 				$el[attr] = value;
