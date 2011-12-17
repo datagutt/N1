@@ -84,7 +84,7 @@
 			getAttribute: function(selector, attr){
 				var $el = N1.isObject(selector) ? selector : N1.getElement(selector), attr;
 				if(N1.isHostMethod($el, 'getAttribute')){
-					attr = $el.getAttribute(attr, value);
+					attr = $el.getAttribute(attr);
 				}else{
 					/* this will fail for alot of attributes (class etc) */
 					attr = $el[attr];
