@@ -82,8 +82,14 @@
 				}
 			},
 			getAttribute: function(selector, attr){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
-				return $el && $el[attr] ? $el[attr] : "";
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector), attr;
+				if(N1.isHostMethod($el, 'getAttribute')){
+					attr = $el.getAttribute(attr, value);
+				}else{
+					/* this will fail for alot of attributes (class etc) */
+					attr = $el[attr];
+				}
+				return attr;
 			},
 			getHtml: function(selector, html){
 				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
