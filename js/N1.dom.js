@@ -65,7 +65,7 @@
 					});
 				}
 				N1.readyArray.push(func);
-				if(N1.isFeature(document, 'addEventListener')){
+				if(N1.isHostMethod(document, 'addEventListener')){
 					N1.addEvent(document, 'DOMContentLoaded', init);
 				}else if(!N1.isHostMethod(window,'onload')){
 					window.onload = init;
