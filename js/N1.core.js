@@ -1,3 +1,7 @@
+/*
+	N1 0.1 | github.com/datagutt/N1 
+	Core module
+*/
 (function(global, undefined){
 	"use strict";
 	var _N1 = global.N1;

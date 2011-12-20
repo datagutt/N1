@@ -1,6 +1,10 @@
+/*
+	N1 0.1 | github.com/datagutt/N1 
+	Effects module
+*/
 (function(N1, global, doc, undefined){
 	"use strict";
-	if(N1 && N1.isHostMethod && N1.isHostMethod(N1, 'extend') && N1.isHostMethod(N1, 'setOpacity')){
+	if(N1 && N1.isFeature && N1.isFeature('extend') && N1.isFeature('setOpacity')){
 		N1.extend({effects:{
 			fadeIn: function(selector, duration){
 				var $el = N1.isObject(selector) ? selector : N1.getElement(selector),
