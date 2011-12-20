@@ -9,9 +9,6 @@
 			readyArray: [],
 			getElement: function(selector){
 				var $el;
-				if(!selector){
-					return;
-				}
 				if(N1.isHostMethod(doc, 'querySelector')){
 					$el = doc.querySelector(selector);
 				}else if(selector.search("#")==0){
@@ -27,9 +24,6 @@
 			},
 			getElements: function(selector){
 				var $els;
-				if(!selector){
-					return;
-				}
 				if(N1.isHostMethod(doc, 'querySelectorAll')){
 					$els = doc.querySelectorAll(selector);
 				}else if(selector.search("#")==0){
@@ -109,18 +103,12 @@
 			getStyle: function(selector, attr){
 				var $el, $value;
 				$el = N1.isObject(selector) ? selector : N1.getElement(selector);
-				if(!attr){
-					return;
-				}
 				$value = $el && $el.style && $el.style[attr] ? $el.style[attr] : "";
 				return $value;
 			},
 			getOpacity: function(selector){
 				var $el, $filter = 0;
 				$el = N1.isObject(selector) ? selector : N1.getElement(selector);
-				if(!($el && $el.style)){
-					return;
-				}
 				if($el.style["opacity"]){
 					$filter = $el.style["opacity"];
 				}else if($el.style["MozOpacity"]){
