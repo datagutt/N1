@@ -9,7 +9,7 @@
 			ArrayToURL: function(array) {
 				var pairs = [];
 				for (var key in array){
-					if (array.hasOwnProperty(key)){
+					if (N1.isHostMethod(array, 'hasOwnProperty') && array.hasOwnProperty(key)){
 						pairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(array[key]));
 					}
 				}

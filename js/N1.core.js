@@ -14,17 +14,16 @@
 				t==='unknown';
 		},
 		isArray: function(obj){
-			return obj.constructor === Array && obj instanceof Array;
+			return typeof obj === 'array';
 		},
 		isFunction: function(obj){
-			return obj.constructor === Function && obj instanceof Function;
+			return typeof obj === 'function';
 		},
 		isObject: function(obj){
-			/* If its a HTML element, .constructor.constructor will return Object */
-			return obj && obj.constructor && (obj.constructor === Object || obj.constructor.constructor === Object) && obj instanceof Object;
+			return typeof obj === 'object';
 		},
 		isString: function(obj){
-			return obj.constructor === String;
+			return typeof obj === 'string';
 		},
 		extend: function(object, prop){
 			if(!prop){

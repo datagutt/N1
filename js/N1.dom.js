@@ -61,9 +61,7 @@
 			documentReady: function(func){
 				var currentFunc, init = function(){
 					N1.forEach(N1.readyArray, function(i, func){
-						if(N1.isFunction(func)){
-							func();
-						}
+						func();
 					});
 				}
 				N1.readyArray.push(func);
@@ -95,16 +93,11 @@
 			},
 			getHtml: function(selector, html){
 				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
-				if($el && $el.innerHTML){
-					return $el.innerHTML;
-				}
-				return $el;
+				return $el.innerHTML;
 			},
 			getStyle: function(selector, attr){
-				var $el, $value;
-				$el = N1.isObject(selector) ? selector : N1.getElement(selector);
-				$value = $el && $el.style && $el.style[attr] ? $el.style[attr] : "";
-				return $value;
+				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
+				return  $el.style[attr];
 			},
 			getOpacity: function(selector){
 				var $el, $filter = 0;
@@ -148,9 +141,7 @@
 			},
 			setHtml: function(selector, html){
 				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
-				if($el && $el.innerHTML){
-					$el.innerHTML = html;
-				}
+				$el.innerHTML = html;
 				return $el;
 			},
 			setOpacity: function(selector, level){
@@ -165,9 +156,7 @@
 			},
 			setStyle: function(selector, attr, value){
 				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
-				if($el && $el.style){
-					$el.style[attr] = value;
-				}
+				$el.style[attr] = value;
 				return $el;
 			},
 			setStyles: function(selector, attrs){
@@ -178,9 +167,7 @@
 			},
 			removeStyle: function(selector, attr){
 				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
-				if($el && $el.style){
-					$el.style[attr] = false;
-				}
+				$el.style[attr] = false;
 				return $el;
 			},
 			removeEvent: function(selector, type, handler){
