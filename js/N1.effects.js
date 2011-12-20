@@ -7,7 +7,7 @@
 	if(N1 && N1.isFeature && N1.isFeature('extend') && N1.isFeature('setOpacity')){
 		N1.extend({effects:{
 			fadeIn: function(selector, duration){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector),
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector,
 					timer,
 					i = N1.getOpacity($el);
 				
@@ -30,7 +30,7 @@
 				return $el;
 			},
 			fadeOut: function(selector, duration){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector),
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector,
 					timer,
 					i = N1.getOpacity($el);
 				

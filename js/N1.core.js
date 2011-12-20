@@ -13,15 +13,6 @@
 				(!!(t==='object' && object[property])) ||
 				t==='unknown';
 		},
-		isArray: function(obj){
-			return typeof obj === 'array';
-		},
-		isFunction: function(obj){
-			return typeof obj === 'function';
-		},
-		isObject: function(obj){
-			return typeof obj === 'object';
-		},
 		isString: function(obj){
 			return typeof obj === 'string';
 		},

@@ -72,7 +72,7 @@
 				}
 			},
 			addEvent: function(selector, type, handler){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
 				if(N1.isHostMethod($el, 'addEventListener')){
 					$el.addEventListener(type, handler, false);
 				}else if(N1.isHostMethod($el, 'attachEvent')){
@@ -82,7 +82,8 @@
 				}
 			},
 			getAttribute: function(selector, attr){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector), attr;
+				var $el, attr;
+				$el = N1.isString(selector) ? N1.getElement(selector) : selector;
 				if(N1.isHostMethod($el, 'getAttribute')){
 					attr = $el.getAttribute(attr);
 				}else{
@@ -92,16 +93,16 @@
 				return attr;
 			},
 			getHtml: function(selector, html){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
 				return $el.innerHTML;
 			},
 			getStyle: function(selector, attr){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
-				return  $el.style[attr];
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
+				return $el.style[attr];
 			},
 			getOpacity: function(selector){
 				var $el, $filter = 0;
-				$el = N1.isObject(selector) ? selector : N1.getElement(selector);
+				$el = N1.isString(selector) ? N1.getElement(selector) : selector;
 				if($el.style["opacity"]){
 					$filter = $el.style["opacity"];
 				}else if($el.style["MozOpacity"]){
@@ -116,15 +117,15 @@
 				return parseFloat($filter);
 			},
 			showElement: function(selector){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
 				N1.setStyle($el, "display", "block");
 			},
 			hideElement: function(selector){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
 				N1.setStyle($el, "display", "none");
 			},
 			setAttribute: function(selector, attr, value){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
 				if(N1.isHostMethod($el, 'setAttribute')){
 					$el.setAttribute(attr, value);
 				}else{
@@ -140,12 +141,12 @@
 				return true;
 			},
 			setHtml: function(selector, html){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
 				$el.innerHTML = html;
 				return $el;
 			},
 			setOpacity: function(selector, level){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
 				if(level > 1){
 					level = 1;
 				}
@@ -155,7 +156,7 @@
 				N1.setStyle($el, 'filter', 'alpha(opacity=' + (level * 100) + ');');
 			},
 			setStyle: function(selector, attr, value){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
 				$el.style[attr] = value;
 				return $el;
 			},
@@ -166,12 +167,12 @@
 				return true;
 			},
 			removeStyle: function(selector, attr){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
 				$el.style[attr] = false;
 				return $el;
 			},
 			removeEvent: function(selector, type, handler){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector);
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
 				if(N1.isHostMethod($el, 'removeEventListener')){
 					$el.removeEventListener(type, handler, false);
 				}else if(N1.isHostMethod($el, 'detachEvent')){
@@ -181,7 +182,7 @@
 				}
 			},
 			removeAttribute: function(selector, attr){
-				var $el = N1.isObject(selector) ? selector : N1.getElement(selector); 
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector; 
 				if(N1.isHostMethod($el, 'removeAttribute')){
 					$el.removeAttribute(attr);
 				}else{
