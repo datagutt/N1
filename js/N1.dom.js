@@ -5,6 +5,9 @@
 			readyArray: [],
 			getElement: function(selector){
 				var $el;
+				if(!selector){
+					return;
+				}
 				if(N1.isHostMethod(doc, 'querySelector')){
 					$el = doc.querySelector(selector);
 				}else if(selector.search("#")==0){
@@ -12,14 +15,17 @@
 					if(N1.isHostMethod(doc, 'getElementById')){
 						$el = doc.getElementById(selector);
 					}
-				}else if(selector.search("#")==0){
+				}else if(selector.search(".")==0){
 					selector = selector.slice(1);
-					$el = N1s.getByClass($el)[0];
+					$el = N1.getByClass(selector)[0];
 				}
 				return $el;
 			},
 			getElements: function(selector){
 				var $els;
+				if(!selector){
+					return;
+				}
 				if(N1.isHostMethod(doc, 'querySelectorAll')){
 					$els = doc.querySelectorAll(selector);
 				}else if(selector.search("#")==0){
@@ -27,9 +33,9 @@
 					if(N1.isHostMethod(doc, 'getElementById')){
 						$els = doc.getElementById(selector);
 					}
-				}else if(selector.search("#")==0){
+				}else if(selector.search(".")==0){
 					selector = selector.slice(1);
-					$els = N1.getByClass($el);
+					$els = N1.getByClass(selector);
 				}
 				return $els;
 			},
@@ -44,10 +50,8 @@
 				}
 				if(allElements.length){
 					N1.forEach(allElements, function(i, current){
-						if(N1.isHostMethod(current, 'getAttribute')){
-							match = (current.getAttribute("className") == el);
-						}else if(current && current.className && current.className != ""){
-							match = (current.className == el);
+						if(N1.isFeature("getAttribute")){
+							match = (N1.getAttribute(current, "className") == el);
 						}
 						if(match){
 							els.push(current);
