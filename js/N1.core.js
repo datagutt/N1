@@ -7,11 +7,15 @@
 	var _N1 = global.N1;
 	var N1 = {
 		version: 0.1,
-		isHostMethod: function(object, property){
-			var t = typeof object[property];  
+		isHostMethod: function(object, method){
+			var t = typeof object[method];  
 			return t==='function' ||
-				(!!(t==='object' && object[property])) ||
+				(!!(t==='object' && object[method])) ||
 				t==='unknown';
+		},
+		isHostProperty: function(object, property){
+			var t = typeof object[property];  
+			return !!((t==='function' || t==='object') && object[property]);
 		},
 		isString: function(obj){
 			return typeof obj === 'string';
