@@ -81,6 +81,11 @@
 					$el["on"+type] = handler;
 				}
 			},
+			preventDefault: function(e){
+				if (N1.isHostMethod(e, 'preventDefault')) {
+					e.preventDefault();
+				}
+			},
 			getAttribute: function(selector, attr){
 				var $el, attr;
 				$el = N1.isString(selector) ? N1.getElement(selector) : selector;

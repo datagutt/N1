@@ -59,7 +59,7 @@
 		},
 		changeNamespace: function(name){
 			global[name] = N1;
-			global.N1 = null;
+			global.N1 = undefined;
 		}
 	};
 	if(N1 in global){
