@@ -59,15 +59,20 @@
 				return els;
 			},
 			documentReady: function(func){
-				var currentFunc, init = function(){
+				var currentFunc, loaded, init = function(){
+					if(loaded){
+						return;
+					}
 					N1.forEach(N1.readyArray, function(i, func){
 						func();
 					});
+					loaded = true;
 				}
 				N1.readyArray.push(func);
 				if(N1.isHostMethod(document, 'addEventListener')){
 					N1.addEvent(document, 'DOMContentLoaded', init);
-				}else if(!N1.isHostProperty(window,'onload')){
+				}
+				if(!N1.isHostProperty(window,'onload')){
 					window.onload = init;
 				}
 			},
