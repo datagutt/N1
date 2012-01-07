@@ -1,4 +1,8 @@
 <?php
+/*
+	N1 0.1 | github.com/datagutt/N1 
+	Builder
+*/
 $avail = array();
 $files = array();
 $avail["core"] = "on";
