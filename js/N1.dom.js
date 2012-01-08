@@ -76,6 +76,18 @@
 					window.onload = init;
 				}
 			},
+			hasClass: function(selector, name){
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
+				return new RegExp('(\\s|^)'+name+'(\\s|$)').test($el.className);
+			},
+			addClass: function(selector, name){
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
+				if(!$el.className){
+					$el.className = name;
+				}else if(!N1.hasClass(selector, name)){
+					$el.className += ' ' + name;
+				}
+			},
 			addEvent: function(selector, type, handler){
 				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
 				if(N1.isHostMethod($el, 'addEventListener')){
@@ -175,6 +187,10 @@
 					N1.setStyle(selector, attr, value);
 				});
 				return true;
+			},
+			removeClass: function(selector, name){
+				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
+				$el.className = $el.className.replace(new RegExp('(\\s|^)'+name+'(\\s|$)'), ' ').replace(/^\s+|\s+$/g, '');
 			},
 			removeStyle: function(selector, attr){
 				var $el = N1.isString(selector) ? N1.getElement(selector) : selector;
