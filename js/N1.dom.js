@@ -2,7 +2,7 @@
 	N1 0.1 | github.com/datagutt/N1 
 	DOM module
 */
-(function(N1, global, doc, undefined){
+(function(N1, global, doc){
 	"use strict";
 	if(N1 && N1.isFeature && N1.isFeature('extend')){
 		N1.extend({
@@ -217,4 +217,4 @@
 			}
 		});
 	}
-})(window.N1, window, document, undefined);
+})(window.N1, window, document);

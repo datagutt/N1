@@ -2,7 +2,7 @@
 	N1 0.1 | github.com/datagutt/N1 
 	Ajax module
 */
-(function(N1, global, undefined){
+(function(N1, global){
 	"use strict";
 	if(N1 && N1.isFeature && N1.isFeature('extend')){
 		N1.extend({ajax:{
@@ -56,4 +56,4 @@
 			}
 		}});
 	}
-})(window.N1, window, undefined);
+})(window.N1, window);

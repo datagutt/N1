@@ -2,7 +2,7 @@
 	N1 0.1 | github.com/datagutt/N1 
 	Core module
 */
-(function(global, undefined){
+(function(global){
 	"use strict";
 	var _N1 = global.N1;
 	var N1 = {
@@ -67,4 +67,4 @@
 	}else{
 		window.N1 = N1;
 	}
-})(window, undefined);
+})(window);
